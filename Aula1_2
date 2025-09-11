@@ -1,0 +1,43 @@
+SELECT * 
+FROM customers
+
+SELECT contact_name, city
+FROM customers
+
+SELECT country
+FROM customers
+
+SELECT DISTINCT country
+FROM customers
+
+SELECT COUNT(DISTINCT country) AS Distinct, COUNT(country) AS All
+FROM customers
+
+SELECT * 
+FROM customers 
+WHERE country = 'Mexico'
+
+SELECT * 
+FROM customers 
+WHERE customer_id = 'ANATR'
+
+SELECT *
+FROM customers
+WHERE country = 'Germany' AND city = 'Berlin'
+
+SELECT *
+FROM customers
+WHERE  city = 'Aachen'
+
+SELECT *
+FROM customers
+WHERE country = 'Germany'
+
+SELECT *
+FROM customers
+WHERE country = 'Germany' AND (city = 'Berlin' OR city= 'Aachen')
+
+SELECT *
+FROM customers
+WHERE country <> 'Germany' AND country <> 'USA'
+
