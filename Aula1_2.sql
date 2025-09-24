@@ -73,21 +73,19 @@ SELECT *
 FROM customers
 WHERE contact_name is Null
 
+SELECT *
+FROM customers
+WHERE contact_name IS NOT NULL
+
 SELECT * 
 FROM customers
-WHERE contact_name is not Null
+WHERE contact_name LIKE 'a%'
 
-SELECT *
-FROM customers
-WHERE contact_name LIKE 'A%'
-
--- LOWE() E UPPER()
-
-SELECT *
+SELECT * 
 FROM customers
 WHERE LOWER(contact_name) LIKE 'a%'
 
-SELECT *
+SELECT * 
 FROM customers
 WHERE UPPER(contact_name) LIKE 'A%'
 
@@ -115,19 +113,17 @@ SELECT *
 FROM customers
 WHERE contact_name LIKE '%or%'
 
+SELECT *
+FROM customers
+WHERE country IN('Germany', 'France', 'UK')
 
 SELECT *
 FROM customers
-WHERE country IN ('Germany', 'France', 'UK')
-
-SELECT *
-FROM customers
-WHERE country NOT IN ('Germany', 'France', 'UK')
+WHERE country NOT IN('Germany', 'France', 'UK')
 
 SELECT *
 FROM customers
 WHERE country IN (SELECT country FROM suppliers)
-
 
 SELECT *
 FROM products
@@ -139,4 +135,34 @@ WHERE unit_price NOT BETWEEN 10 AND 20
 
 SELECT *
 FROM products
-WHERE (unit_price BETWEEN 10 AND 20) AND category_id NOT IN (1,2,3)
+WHERE (unit_price BETWEEN 10 AND 20) AND category_id NOT IN (1, 2, 3)
+
+SELECT *
+FROM products
+WHERE product_name BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni'
+ORDER BY product_name
+
+SELECT *
+FROM orders
+WHERE order_date BETWEEN '07/04/1996' AND '07/09/1996'
+
+-- FUNÇOES AGREGADAS
+
+SELECT product_name, MIN(unit_price) AS preco_min, MAX(unit_price) AS preco_max,
+		COUNT(*) AS total_de_produtos, AVG(unit_price) AS preco_medio
+FROM products
+GROUP BY product_name
+
+SELECT SUM (quantity) AS quantidade_total
+FROM order_details
+
+SELECT 	category_id, MIN(unit_price) As preco_min, MAX(unit_price) AS preco_max,
+			COUNT(*) AS total_de_produtos, AVG(unit_price) AS preco_medio
+FROM products
+GROUP BY category_id
+
+SELECT order_id, SUM(quantity) AS quantidade_total
+FROM order_details
+GROUP BY order_id
+
+
